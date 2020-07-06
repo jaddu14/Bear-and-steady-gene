@@ -1,0 +1,26 @@
+s1=set(gene)
+    s={}
+    for i in s1:
+        a=gene.count(i)
+        s[i]=a
+    no=n/4
+    if s['A']==no and s['C']==no and s['T']==no and s['G']==no:
+        return 0
+        exit()
+    left=0
+    right=0
+    min=n
+    while(1):
+        while s['A']>no or s['C']>no or s['T']>no or s['G']>no:
+            s[gene[right]]-=1
+            right+=1
+            if right==n:
+                break
+        if right==n:
+            break
+        while s['A']<=no and s['C']<=no and s['G']<=no and s['T']<=no:
+            s[gene[left]]+=1
+            left+=1
+        if (right-left+1)<min:
+            min=right-left+1
+    return (min)
