@@ -1,0 +1,65 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    string str;
+    int n;
+
+    cin>>n;
+    cin>>str;
+
+    map<char, int> map;
+
+    for (int i = 0; i < n; ++i)
+    {
+        map[str[i]]++;
+    }
+    int gene;
+    gene= n/4;
+
+    if(map['A']==gene && map['C']==gene && map['T']==gene && map['G']==gene)
+    {
+        cout<<"0"<<endl;
+        exit(0);
+    }
+
+        int right=0;
+        int left=0;
+        int min=n;
+
+    while(1)
+    {
+        while(map['A']>gene || map['C']>gene || map['T']>gene || map['G']>gene )
+        {
+            map[str[right]]--;
+           
+            right++;
+
+            if(right==n)
+            {break;}
+        }
+
+        if(right==n)
+        { break;}
+
+
+        while(map['A']<=gene && map['C']<=gene && map['T']<=gene && map['G']<=gene )    
+        {
+            map[str[left]]++;
+            left++;
+        }
+
+        
+        if((right-left+1) < min)
+        {
+            min=right-left+1;
+        }
+        
+    }
+
+    cout<<min<<endl;
+    
+    return 0;
+}
